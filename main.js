@@ -1,4 +1,4 @@
-import { default as planck, Simulation } from './lib/planck/index.js'
+import planck, { Simulation } from './lib/planck/index.js'
 import { Keyboard } from './lib/input/index.js'
 
 let keyboard = new Keyboard()
@@ -42,7 +42,7 @@ planck.testbed((testbed) => {
     testbed.step = () => {
         keyboard.updateFrameState()
 
-        let player = simulation.get(playerid)
+        let player = simulation.get(playerid).default
         let running = keyboard.isDown('ShiftLeft|ShiftRight')
         let velocity = player.body.getLinearVelocity()
         let mass = player.body.getMass()
