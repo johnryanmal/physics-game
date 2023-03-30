@@ -27,8 +27,8 @@ planck.testbed((testbed) => {
                 {
                     form: {
                         type: 'box',
-                        w: 1,
-                        h: 1
+                        w: 2,
+                        h: 2
                     }
                 }
             ]
