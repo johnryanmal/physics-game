@@ -4,18 +4,21 @@ import { Keyboard } from './lib/input/index.js'
 let keyboard = new Keyboard()
 keyboard.listen()
 
+const testbed_size = 40
+const aspect_ratio = window.innerWidth / window.innerHeight
+
 planck.testbed((testbed) => {
     // Viewbox center and size
     testbed.x = 0;
     testbed.y = 0;
 
     // Viewbox size
-    testbed.width = 30;
-    testbed.height = 20;
+    testbed.width = testbed_size * aspect_ratio;
+    testbed.height = testbed_size;
 
     testbed.speed = 1;
 
-    window.simulation = new Simulation({world: testbed.world})
+    let simulation = new Simulation({world: testbed.world})
         .define('topdown', {
             dampVel: 1,
             dampRot: 1,
@@ -90,6 +93,10 @@ planck.testbed((testbed) => {
 
         } else if (keyboard.isPressed('Digit3')) {
             simulation.quantize(simulation.of('dynamics'))
+
+        } else if (keyboard.isPressed('Digit4')) {
+            simulation.destroyAll(simulation.of('dynamics'))
+            playerid = simulation.create('player')
 
         }
 
